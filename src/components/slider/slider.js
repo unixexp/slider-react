@@ -1,6 +1,7 @@
 import React from "react"
 
 import styles from "./slider.module.scss"
+import SliderIcons from "./slider.svg"
 
 const Slider = ({ photos }) => {
 
@@ -15,10 +16,10 @@ const Slider = ({ photos }) => {
     return (
         <>
         <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnLeft}>
-            <use xlinkHref="assets/img/sprites.svg#ArrowLeft"></use>
+            <use xlinkHref={`${SliderIcons}#ArrowLeft`}></use>
         </svg>
         <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnRight}>
-            <use xlinkHref="assets/img/sprites.svg#ArrowRight"></use>
+            <use xlinkHref={`${SliderIcons}#ArrowRight`}></use>
         </svg>
         <SliderTrack photos={photos}/>
         </>
@@ -33,7 +34,7 @@ const SliderTrack = ({ photos }) => {
             {
                 photos.map((photo) => {
                     return (
-                        <img alt={photo} src={`assets/img/photos/${photo}`}/>
+                        <img key={photo} alt={photo} src={`assets/img/${photo}`}/>
                     )
                 })
             }
