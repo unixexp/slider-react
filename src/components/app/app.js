@@ -3,20 +3,20 @@ import Slider from "../slider/slider"
 
 const App = () => {
 
-    const photos = [
-        "amp.jpg",
-        "dj.jpg",
-        "effect.jpeg",
-        "gibson-exclusive-collection.jpg",
-        "headphones.jpeg",
-        "keys.jpg",
-        "remni.jpeg",
-        "studio.jpeg"
+    const images = [
+        { src: "amp.jpg" },
+        { src: "dj.jpg" },
+        { src: "effect.jpeg" },
+        { src: "gibson-exclusive-collection.jpg" },
+        { src: "headphones.jpeg" },
+        { src: "keys.jpg" },
+        { src: "remni.jpeg" },
+        { src: "studio.jpeg" }
     ]
 
     return (
         <div>
-            <Slider photos={photos}/>
+            <Slider images={images}/>
         </div>
     );
 
