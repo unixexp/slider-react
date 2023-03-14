@@ -28,33 +28,40 @@ const Slider = ({ images }) => {
 
     const slideLeft = () => {
         setState((prevState) => {
+            const newState = Object.assign({}, prevState)
+
             if (prevState.offset >= 0) {
-                return {
-                    offset: 0,
-                    position: POSITION_START
-                }
+                newState.offset = 0
+                newState.position = POSITION_START
             } else {
-                return {
-                    offset: prevState.offset + item.current.offsetWidth,
-                    position: POSITION_MIDDLE
-                }
+                newState.offset = prevState.offset + item.current.offsetWidth
+                newState.position = POSITION_MIDDLE
             }
+
+            return newState
         })
     }
 
     const slideRight = () => {
         setState((prevState) => {
-            if (prevState.offset >= 0) {
-                return {
-                    offset: 0,
-                    position: POSITION_START
+            const newState = Object.assign({}, prevState)
+            const maxOffset = track.offsetWidth - slider.offsetWidth
+            const offset = prevState.offset - item.current.offsetWidth;
+
+            if (maxOffset > 0) {
+                if (Math.abs(offset) >= maxOffset) {
+                    newState.offset = prevState.maxOffset * -1;
+                    newState.position = this.POSITION_END;
+                } else {
+                    newState.position = this.POSITION_MIDDLE;
                 }
             } else {
-                return {
-                    offset: prevState.offset + itemWidth,
-                    position: POSITION_MIDDLE
-                }
+                newState.offset = offset
+                newState.maxOffset = maxOffset
+                newState.position = POSITION_MIDDLE
             }
+
+            return newState
         })
     }
 
