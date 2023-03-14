@@ -1,0 +1,29 @@
+.Slider {
+    overflow: hidden;
+
+    &Track {
+        overflow: hidden;
+        display: inline-flex;
+        flex-wrap: nowrap;
+        margin-left: 0;
+        transition: margin 1s ease;
+    }
+
+    &Item {
+        padding: 0 10px;
+    }
+
+    &ArrowImg {
+        fill: #fff;
+        cursor: pointer;
+        width: 48px;
+        height: 48px;
+        background-color: #3480fa;
+        border-radius: 50%;
+        transition: all .3s;
+
+        &:hover {
+            background-color: #78acff;
+        }
+    }
+}
