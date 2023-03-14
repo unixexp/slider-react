@@ -15,9 +15,11 @@ const Slider = ({ images }) => {
 
     return (
         <div className={`${styles.Slider}`}>
-            <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnLeft}>
-                    <use xlinkHref={`${SliderIcons}#ArrowLeft`}></use>
-            </svg>
+            <div className={`${styles.SliderArrow}`}>
+                <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnLeft}>
+                        <use xlinkHref={`${SliderIcons}#ArrowLeft`}></use>
+                </svg>
+            </div>
             <div className={`${styles.SliderContainer}`}>
                 <div className={`${styles.SliderTrack}`}>
                     {
@@ -33,9 +35,11 @@ const Slider = ({ images }) => {
                     }
                 </div>
             </div>
-            <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnRight}>
-                <use xlinkHref={`${SliderIcons}#ArrowRight`}></use>
-            </svg>
+            <div className={`${styles.SliderArrow}`}>
+                <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={turnRight}>
+                    <use xlinkHref={`${SliderIcons}#ArrowRight`}></use>
+                </svg>
+            </div>
         </div>
     )
 
