@@ -14,12 +14,6 @@ const Slider = ({ images }) => {
     const track = useRef(null)
     const slider = useRef(null)
 
-    useEffect(() => {
-        console.log(item.current.offsetWidth)
-        console.log(track.current.offsetWidth)
-        console.log(slider.current.offsetWidth)
-    })
-
     const [state, setState] = useState({
         offset: 0,
 		maxOffset: 0,
@@ -45,15 +39,17 @@ const Slider = ({ images }) => {
     const slideRight = () => {
         setState((prevState) => {
             const newState = Object.assign({}, prevState)
-            const maxOffset = track.offsetWidth - slider.offsetWidth
-            const offset = prevState.offset - item.current.offsetWidth;
+            const maxOffset = track.current.offsetWidth - slider.current.offsetWidth
+            const offset = prevState.offset - item.current.offsetWidth
+            const nextOffset = offset - item.current.offsetWidth
 
             if (maxOffset > 0) {
-                if (Math.abs(offset) >= maxOffset) {
-                    newState.offset = prevState.maxOffset * -1;
-                    newState.position = this.POSITION_END;
+                if (Math.abs(nextOffset) >= maxOffset) {
+                    newState.offset = maxOffset * -1
+                    newState.position = POSITION_END
                 } else {
-                    newState.position = this.POSITION_MIDDLE;
+                    newState.offset = offset
+                    newState.position = POSITION_MIDDLE
                 }
             } else {
                 newState.offset = offset
@@ -71,7 +67,10 @@ const Slider = ({ images }) => {
             ref={el => slider.current = el && el}
             >
             <div className={`${styles.SliderArrow}`}>
-                <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={slideLeft}>
+                <svg className={
+                            state.position === POSITION_START ? `${styles.SliderArrowImgDisabled}`
+                            : `${styles.SliderArrowImg}`}
+                    viewBox="0 0 32 32" onClick={slideLeft}>
                         <use xlinkHref={`${SliderIcons}#ArrowLeft`}></use>
                 </svg>
             </div>
@@ -98,7 +97,10 @@ const Slider = ({ images }) => {
                 </div>
             </div>
             <div className={`${styles.SliderArrow}`}>
-                <svg className={`${styles.SliderArrowImg}`} viewBox="0 0 32 32" onClick={slideRight}>
+                <svg className={
+                            state.position === POSITION_END ? `${styles.SliderArrowImgDisabled}`
+                            : `${styles.SliderArrowImg}`}
+                    viewBox="0 0 32 32" onClick={slideRight}>
                     <use xlinkHref={`${SliderIcons}#ArrowRight`}></use>
                 </svg>
             </div>
